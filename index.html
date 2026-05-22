@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>ҚР Қылмыстық Статистика 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root {
+  --red:#E8281A;--red-dark:#9B1A10;--red-glow:rgba(232,40,26,0.15);
+  --gold:#C8A951;--gold-light:#F0D080;
+  --bg:#0A0B0E;--bg2:#111318;--bg3:#181B22;--bg4:#1E2230;--bg5:#252A38;
+  --text:#E8EAF0;--text2:#9AA0B4;--text3:#5C6278;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --teal:#1DB8A0;--amber:#E89020;--blue:#2D7DD2;--purple:#8B5CF6;
+  --card-bg:var(--bg2);--header-bg:var(--bg);
+  --shadow:0 4px 24px rgba(0,0,0,0.4);
+  --radius:10px;
+}
+.light-mode {
+  --bg:#F0F2F7;--bg2:#FFFFFF;--bg3:#EEF0F7;--bg4:#E2E6F0;--bg5:#D8DCE8;
+  --text:#0A0B1E;--text2:#3A4060;--text3:#8090B0;
+  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+  --card-bg:#FFFFFF;--header-bg:#FFFFFF;
+  --shadow:0 4px 24px rgba(0,0,0,0.1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.3;}
+.light-mode body::before{opacity:0.1;}
+
+/* TOP UTILITY BAR */
+.utility-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:6px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:var(--shadow);}
+.utility-left{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.utility-right{display:flex;align-items:center;gap:8px;}
+.util-btn{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-family:'IBM Plex Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;letter-spacing:0.3px;}
+.util-btn:hover{background:var(--bg4);color:var(--text);border-color:var(--border2);}
+.util-btn.admin-btn{background:linear-gradient(135deg,var(--red-dark),var(--red));color:#fff;border-color:var(--red);font-weight:700;}
+.util-btn.admin-btn:hover{background:linear-gradient(135deg,var(--red),#ff4a3d);box-shadow:0 0 16px rgba(232,40,26,0.4);}
+.lang-group{display:flex;gap:3px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:3px;}
+.lang-btn{padding:4px 10px;border-radius:4px;border:none;background:transparent;color:var(--text3);font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'IBM Plex Sans',sans-serif;}
+.lang-btn.active{background:var(--red);color:#fff;}
+.theme-toggle{width:36px;height:20px;border-radius:10px;border:1px solid var(--border2);background:var(--bg4);cursor:pointer;position:relative;transition:background 0.3s;}
+.theme-toggle::after{content:'';position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--text3);transition:all 0.3s;}
+.light-mode .theme-toggle{background:var(--amber);}
+.light-mode .theme-toggle::after{left:18px;background:#fff;}
+.theme-icon{font-size:14px;}
+
+/* HEADER */
+.header{background:linear-gradient(180deg,rgba(232,40,26,0.06) 0%,transparent 100%);border-bottom:1px solid var(--border2);padding:0;overflow:hidden;position:relative;}
+.header-inner{max-width:1400px;margin:0 auto;padding:20px 20px 0;}
+.header-top{display:flex;align-items:center;gap:16px;margin-bottom:0;}
+.kz-emblem{width:56px;height:56px;flex-shrink:0;filter:drop-shadow(0 2px 8px rgba(200,169,81,0.3));}
+.header-titles{flex:1;}
+.header-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px;}
+.header-main{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,4.5vw,40px);letter-spacing:2px;color:var(--text);line-height:1;}
+.header-sub{font-size:12px;color:var(--text2);margin-top:3px;letter-spacing:0.5px;}
+.live-badge{display:flex;align-items:center;gap:6px;background:rgba(232,40,26,0.12);border:1px solid rgba(232,40,26,0.3);border-radius:20px;padding:6px 14px;font-size:10px;font-family:'IBM Plex Mono',monospace;color:var(--red);letter-spacing:1px;white-space:nowrap;}
+.live-dot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}
+
+/* KPI STRIP */
+.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);margin-top:20px;}
+.kpi-card{background:var(--bg);padding:14px 20px;position:relative;transition:background 0.2s;cursor:default;}
+.light-mode .kpi-card{background:var(--bg2);}
+.kpi-card:hover{background:var(--bg2);}
+.light-mode .kpi-card:hover{background:var(--bg3);}
+.kpi-label{font-size:9px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;margin-bottom:5px;}
+.kpi-val{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3.5vw,34px);letter-spacing:1px;line-height:1;transition:color 0.3s;}
+.kpi-val.red{color:var(--red);}
+.kpi-val.gold{color:var(--gold);}
+.kpi-val.teal{color:var(--teal);}
+.kpi-delta{font-size:10px;margin-top:3px;display:flex;align-items:center;gap:4px;}
+.kpi-delta.up{color:var(--red);}
+.kpi-delta.down{color:var(--teal);}
+
+/* MAIN */
+.main{max-width:1400px;margin:0 auto;padding:24px 20px;position:relative;z-index:1;}
+.section-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.section-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);letter-spacing:3px;text-transform:uppercase;white-space:nowrap;}
+.section-line{flex:1;height:1px;background:var(--border);}
+
+/* CARDS */
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;position:relative;overflow:hidden;box-shadow:var(--shadow);transition:background 0.3s,border-color 0.3s,box-shadow 0.2s;}
+.card:hover{box-shadow:0 6px 32px rgba(0,0,0,0.5);}
+.light-mode .card:hover{box-shadow:0 6px 32px rgba(0,0,0,0.15);}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),transparent);}
+.card-title{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px;font-family:'IBM Plex Mono',monospace;}
+.card-subtitle{font-size:11px;color:var(--text3);margin-bottom:14px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.grid-2-1{display:grid;grid-template-columns:2fr 1fr;gap:16px;}
+.section-gap{margin-bottom:28px;}
+
+/* TABS */
+.nav-tabs{display:flex;gap:3px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:4px;margin-bottom:24px;overflow-x:auto;scrollbar-width:none;box-shadow:var(--shadow);}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.tab-btn{flex-shrink:0;padding:8px 16px;border-radius:7px;border:none;background:transparent;color:var(--text2);font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.3px;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.tab-btn.active{background:var(--red);color:#fff;}
+.tab-btn:hover:not(.active){background:var(--bg3);color:var(--text);}
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* BARS */
+.crime-bar-item{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.crime-bar-label{font-size:11px;color:var(--text2);width:140px;flex-shrink:0;line-height:1.3;}
+.crime-bar-track{flex:1;height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;}
+.crime-bar-fill{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);}
+.crime-bar-val{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);width:52px;text-align:right;flex-shrink:0;}
+
+/* REGION TABLE */
+.region-table{width:100%;border-collapse:collapse;}
+.region-table th{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);}
+.region-table td{padding:9px 12px;font-size:12px;color:var(--text);border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle;}
+.light-mode .region-table td{border-bottom:1px solid rgba(0,0,0,0.04);}
+.region-table tr:hover td{background:rgba(255,255,255,0.025);}
+.light-mode .region-table tr:hover td{background:rgba(0,0,0,0.025);}
+.rank-num{font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--text3);}
+.severity-badge{display:inline-block;padding:3px 8px;border-radius:3px;font-size:9px;font-weight:600;letter-spacing:1px;font-family:'IBM Plex Mono',monospace;}
+.sev-high{background:rgba(232,40,26,0.15);color:var(--red);}
+.sev-med{background:rgba(232,144,32,0.15);color:var(--amber);}
+.sev-low{background:rgba(29,184,160,0.15);color:var(--teal);}
+
+/* HEATMAP */
+.heatmap-grid{display:grid;grid-template-columns:68px repeat(12,1fr);gap:2px;font-size:9px;}
+.hm-cell{height:26px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:8.5px;}
+.hm-label{color:var(--text3);justify-content:flex-start;font-size:8.5px;}
+.hm-month{color:var(--text3);}
+
+/* RINGS */
+.rings-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center;}
+.ring-label{font-size:10px;color:var(--text2);margin-top:5px;line-height:1.3;}
+
+/* MINI STATS */
+.mini-stat-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
+.mini-stat{flex:1;min-width:70px;background:var(--bg3);border-radius:6px;padding:10px 12px;border:1px solid var(--border);}
+.mini-stat-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--text);line-height:1;}
+.mini-stat-lbl{font-size:9px;color:var(--text3);margin-top:2px;}
+
+/* ALERT */
+.alert-strip{background:linear-gradient(90deg,rgba(232,40,26,0.1),rgba(232,40,26,0.04));border:1px solid rgba(232,40,26,0.2);border-radius:var(--radius);padding:12px 16px;margin-bottom:20px;display:flex;align-items:flex-start;gap:12px;}
+.alert-text{font-size:12px;color:var(--text2);line-height:1.6;}
+.alert-text strong{color:var(--text);}
+.source-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-top:12px;}
+
+/* CRIMINALS */
+.criminals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.criminal-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform 0.2s,box-shadow 0.2s;}
+.criminal-card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.5);}
+.criminal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--red-dark));}
+.criminal-header{background:linear-gradient(135deg,var(--bg4),var(--bg3));padding:16px;display:flex;gap:14px;align-items:flex-start;border-bottom:1px solid var(--border);}
+.criminal-photo{width:70px;height:70px;border-radius:8px;object-fit:cover;border:2px solid var(--border2);background:var(--bg4);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;}
+.criminal-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--text);line-height:1.1;}
+.criminal-id{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);letter-spacing:2px;margin-top:3px;}
+.criminal-crime{font-size:11px;color:var(--text2);margin-top:5px;line-height:1.4;}
+.criminal-body{padding:14px 16px;}
+.criminal-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.light-mode .criminal-row{border-bottom:1px solid rgba(0,0,0,0.04);}
+.criminal-row:last-child{border-bottom:none;}
+.cr-key{font-size:10px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:0.5px;}
+.cr-val{font-size:11px;color:var(--text);font-weight:600;}
+.danger-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:1px;font-family:'IBM Plex Mono',monospace;}
+.danger-1{background:rgba(232,40,26,0.15);color:var(--red);}
+.danger-2{background:rgba(232,144,32,0.15);color:var(--amber);}
+.danger-3{background:rgba(29,184,160,0.15);color:var(--teal);}
+
+/* ADMIN MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.modal-overlay.hidden{display:none;}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;width:100%;max-width:420px;box-shadow:0 20px 80px rgba(0,0,0,0.8);overflow:hidden;animation:modalIn 0.3s ease;}
+@keyframes modalIn{from{opacity:0;transform:scale(0.95)translateY(10px);}to{opacity:1;transform:scale(1)translateY(0);}}
+.modal-header{background:linear-gradient(135deg,rgba(232,40,26,0.1),rgba(155,26,16,0.1));padding:24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;}
+.modal-icon{width:44px;height:44px;border-radius:10px;background:rgba(232,40,26,0.15);border:1px solid rgba(232,40,26,0.3);display:flex;align-items:center;justify-content:center;font-size:20px;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--text);}
+.modal-subtitle{font-size:11px;color:var(--text3);margin-top:2px;}
+.modal-body{padding:24px;}
+.form-group{margin-bottom:16px;}
+.form-label{font-size:10px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:7px;display:block;}
+.form-input{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s;}
+.form-input:focus{border-color:var(--red);}
+.login-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--red-dark),var(--red));border:none;border-radius:8px;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;transition:all 0.2s;margin-top:8px;}
+.login-btn:hover{background:linear-gradient(135deg,var(--red),#ff4a3d);box-shadow:0 0 20px rgba(232,40,26,0.4);}
+.login-error{color:var(--red);font-size:11px;text-align:center;margin-top:8px;display:none;}
+.close-btn{position:absolute;top:16px;right:16px;background:var(--bg4);border:1px solid var(--border);width:28px;height:28px;border-radius:6px;cursor:pointer;color:var(--text2);font-size:14px;display:flex;align-items:center;justify-content:center;}
+.close-btn:hover{background:var(--bg5);color:var(--text);}
+
+/* ADMIN PANEL */
+.admin-panel{background:var(--bg2);border:2px solid rgba(232,40,26,0.3);border-radius:14px;padding:24px;margin-bottom:24px;position:relative;box-shadow:0 0 40px rgba(232,40,26,0.08);}
+.admin-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--amber),var(--red));border-radius:14px 14px 0 0;}
+.admin-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.admin-badge{background:rgba(232,40,26,0.15);border:1px solid rgba(232,40,26,0.3);border-radius:6px;padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);letter-spacing:2px;}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:20px;}
+.admin-field{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;}
+.admin-field-label{font-size:9px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.admin-input{width:100%;background:var(--bg4);border:1px solid var(--border2);border-radius:6px;padding:8px 10px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;outline:none;transition:border-color 0.2s;}
+.admin-input:focus{border-color:var(--red);}
+.apply-btn{padding:10px 24px;background:linear-gradient(135deg,var(--red-dark),var(--red));border:none;border-radius:7px;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;cursor:pointer;transition:all 0.2s;}
+.apply-btn:hover{background:linear-gradient(135deg,var(--red),#ff4a3d);box-shadow:0 0 16px rgba(232,40,26,0.4);}
+.admin-tabs{display:flex;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:4px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none;}
+.admin-tabs::-webkit-scrollbar{display:none;}
+.admin-tab{flex-shrink:0;padding:7px 14px;border-radius:6px;border:none;background:transparent;color:var(--text2);font-family:'IBM Plex Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.admin-tab.active{background:rgba(232,40,26,0.2);color:var(--red);border:1px solid rgba(232,40,26,0.3);}
+.admin-section{display:none;}
+.admin-section.active{display:block;}
+.criminal-admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+.criminal-admin-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;position:relative;}
+.crim-admin-name{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--text);}
+.crim-admin-info{font-size:10px;color:var(--text3);margin-top:2px;}
+.delete-btn{position:absolute;top:10px;right:10px;background:rgba(232,40,26,0.15);border:1px solid rgba(232,40,26,0.3);border-radius:5px;color:var(--red);font-size:10px;padding:3px 8px;cursor:pointer;font-family:'IBM Plex Mono',monospace;}
+.delete-btn:hover{background:rgba(232,40,26,0.3);}
+.add-criminal-form{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;}
+
+/* KAZMAP */
+.kz-map-container{position:relative;width:100%;background:var(--bg3);border-radius:8px;overflow:hidden;}
+.kz-map-container svg{width:100%;height:auto;display:block;}
+.map-region{transition:opacity 0.2s,filter 0.2s;cursor:pointer;}
+.map-region:hover{opacity:0.82;filter:brightness(1.25);}
+.map-tooltip{position:absolute;background:var(--bg4);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--text);pointer-events:none;z-index:100;white-space:nowrap;display:none;box-shadow:0 4px 20px rgba(0,0,0,0.4);}
+.map-tooltip-title{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--gold);margin-bottom:4px;}
+.map-tooltip-row{display:flex;justify-content:space-between;gap:16px;font-size:11px;color:var(--text2);}
+.map-tooltip-val{color:var(--text);font-weight:600;font-family:'IBM Plex Mono',monospace;}
+
+/* LEGEND */
+.map-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;padding:10px 14px;background:var(--bg3);border-radius:7px;border:1px solid var(--border);}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--text2);}
+.legend-dot{width:10px;height:10px;border-radius:2px;}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:16px 20px;max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-left{font-size:10px;color:var(--text3);}
+.footer-right{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:1px;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:2px;}
+
+/* ANIMATIONS */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.card{animation:fadeInUp 0.4s ease both;}
+.card:nth-child(2){animation-delay:.05s;}
+.card:nth-child(3){animation-delay:.1s;}
+.card:nth-child(4){animation-delay:.15s;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .kpi-strip{grid-template-columns:repeat(2,1fr);}
+  .grid-2,.grid-3,.grid-2-1{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .kpi-strip{grid-template-columns:repeat(2,1fr);}
+  .header-main{font-size:22px;}
+  .criminals-grid{grid-template-columns:1fr;}
+  .form-row,.form-row-3{grid-template-columns:1fr;}
+  .admin-grid{grid-template-columns:1fr 1fr;}
+  .heatmap-grid{grid-template-columns:50px repeat(6,1fr);}
+  .utility-bar{flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:480px){
+  .region-table th:nth-child(4),.region-table td:nth-child(4){display:none;}
+  .live-badge{display:none;}
+}
+</style>
+</head>
+<body id="appBody">
+
+<!-- ADMIN LOGIN MODAL -->
+<div class="modal-overlay hidden" id="loginModal">
+  <div class="modal" style="position:relative;">
+    <button class="close-btn" onclick="closeLogin()">✕</button>
+    <div class="modal-header">
+      <div class="modal-icon">🔐</div>
+      <div>
+        <div class="modal-title" id="loginTitle">ADMIN ПАНЕЛІ</div>
+        <div class="modal-subtitle" id="loginSub">Жүйеге кіру · Авторизация</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label" id="loginLabel">ЛОГИН</label>
+        <input class="form-input" type="text" id="adminLogin" placeholder="admin" autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="passLabel">ПАРОЛЬ</label>
+        <input class="form-input" type="password" id="adminPass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">КІРУ</button>
+      <div class="login-error" id="loginError">Қате логин немесе пароль</div>
+    </div>
+  </div>
+</div>
+
+<!-- UTILITY BAR -->
+<div class="utility-bar">
+  <div class="utility-left">
+    <button class="util-btn admin-btn" id="adminToggleBtn" onclick="toggleAdminPanel()">
+      🔐 <span data-i18n="adminBtn">ADMIN</span>
+    </button>
+    <div class="lang-group">
+      <button class="lang-btn active" onclick="setLang('kk')">ҚАЗ</button>
+      <button class="lang-btn" onclick="setLang('ru')">РУС</button>
+      <button class="lang-btn" onclick="setLang('en')">ENG</button>
+    </div>
+  </div>
+  <div class="utility-right">
+    <span class="theme-icon" id="themeIcon">🌙</span>
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Тема ауыстыру"></div>
+    <span class="theme-icon" id="themeIcon2">☀️</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-top">
+      <svg class="kz-emblem" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="38" fill="#0D1020" stroke="#C8A951" stroke-width="2"/>
+        <circle cx="40" cy="40" r="30" fill="none" stroke="#C8A951" stroke-width="0.6" opacity="0.4"/>
+        <path d="M40 8 L43 20 L40 17 L37 20 Z" fill="#C8A951"/>
+        <path d="M40 72 L43 60 L40 63 L37 60 Z" fill="#C8A951"/>
+        <path d="M8 40 L20 37 L17 40 L20 43 Z" fill="#C8A951"/>
+        <path d="M72 40 L60 37 L63 40 L60 43 Z" fill="#C8A951"/>
+        <path d="M16 16 L23 25 L20 23 L22 26 Z" fill="#C8A951" opacity="0.6"/>
+        <path d="M64 16 L57 25 L60 23 L58 26 Z" fill="#C8A951" opacity="0.6"/>
+        <path d="M16 64 L23 55 L20 57 L22 54 Z" fill="#C8A951" opacity="0.6"/>
+        <path d="M64 64 L57 55 L60 57 L58 54 Z" fill="#C8A951" opacity="0.6"/>
+        <circle cx="40" cy="40" r="12" fill="none" stroke="#C8A951" stroke-width="2"/>
+        <circle cx="40" cy="40" r="5" fill="#C8A951"/>
+        <circle cx="40" cy="28" r="2" fill="#C8A951"/>
+        <circle cx="40" cy="52" r="2" fill="#C8A951"/>
+        <circle cx="28" cy="40" r="2" fill="#C8A951"/>
+        <circle cx="52" cy="40" r="2" fill="#C8A951"/>
+        <text x="40" y="43" text-anchor="middle" font-family="serif" font-size="7" fill="#C8A951" font-weight="bold">ҚР</text>
+      </svg>
+      <div class="header-titles">
+        <div class="header-tag">● <span data-i18n="headerTag">ҚАЗАҚСТАН РЕСПУБЛИКАСЫ — ДЕРЕКТЕР ПОРТАЛЫ</span></div>
+        <div class="header-main" data-i18n="headerMain">ҚЫЛМЫСТЫҚ СТАТИСТИКА 2026</div>
+        <div class="header-sub" data-i18n="headerSub">Ішкі істер министрлігі · Бас прокуратура · Ұлттық статистика бюросы</div>
+      </div>
+      <div class="live-badge">
+        <div class="live-dot"></div>
+        <span data-i18n="live">ТІКЕЛЕЙ</span> · 2026
+      </div>
+    </div>
+  </div>
+  <div class="kpi-strip">
+    <div class="kpi-card">
+      <div class="kpi-label" data-i18n="kpi1">Барлық қылмыс</div>
+      <div class="kpi-val red" id="kv-total">287 640</div>
+      <div class="kpi-delta up" id="kd-total">▲ 3.2% <span data-i18n="prevYear">өткен жылмен</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label" data-i18n="kpi2">Ауыр қылмыс</div>
+      <div class="kpi-val gold" id="kv-serious">41 820</div>
+      <div class="kpi-delta up" id="kd-serious">▲ 1.8% <span data-i18n="prevYear">өткен жылмен</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label" data-i18n="kpi3">Ашылу пайызы</div>
+      <div class="kpi-val teal" id="kv-solved">67.4%</div>
+      <div class="kpi-delta down" id="kd-solved">▼ 0.6% <span data-i18n="prevYear">өткен жылмен</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label" data-i18n="kpi4">Сотталғандар</div>
+      <div class="kpi-val" id="kv-convicted">124 370</div>
+      <div class="kpi-delta down" id="kd-convicted">▼ 2.1% <span data-i18n="prevYear">өткен жылмен</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<div class="main" id="mainContent">
+
+  <!-- ADMIN PANEL (hidden by default) -->
+  <div class="admin-panel" id="adminPanel" style="display:none;">
+    <div class="admin-header">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--text);">⚙ ADMIN ПАНЕЛІ</div>
+      <div class="admin-badge">● АВТОРИЗАЦИЯЛАНҒАН</div>
+      <button class="apply-btn" style="margin-left:auto;font-size:13px;padding:7px 16px;" onclick="closeAdminPanel()">✕ ЖАБУ</button>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('kpi')">📊 KPI</button>
+      <button class="admin-tab" onclick="switchAdminTab('monthly')">📅 Айлық</button>
+      <button class="admin-tab" onclick="switchAdminTab('categories')">🏷 Категориялар</button>
+      <button class="admin-tab" onclick="switchAdminTab('regions')">🗺 Өңірлер</button>
+      <button class="admin-tab" onclick="switchAdminTab('crimtypes')">📋 Қылмыс түрлері</button>
+      <button class="admin-tab" onclick="switchAdminTab('criminals')">👤 Қылмыскерлер</button>
+    </div>
+
+    <!-- KPI ADMIN -->
+    <div class="admin-section active" id="admin-kpi">
+      <div class="admin-grid">
+        <div class="admin-field">
+          <div class="admin-field-label">Барлық қылмыс</div>
+          <input class="admin-input" type="text" id="a-total" value="287640" oninput="applyKPI()">
+        </div>
+        <div class="admin-field">
+          <div class="admin-field-label">Барлық % өзгеріс</div>
+          <input class="admin-input" type="number" step="0.1" id="a-total-pct" value="3.2" oninput="applyKPI()">
+        </div>
+        <div class="admin-field">
+          <div class="admin-field-label">Ауыр қылмыс</div>
+          <input class="admin-input" type="text" id="a-serious" value="41820" oninput="applyKPI()">
+        </div>
+        <div class="admin-field">
+          <div class="admin-field-label">Ауыр % өзгеріс</div>
+          <input class="admin-input" type="number" step="0.1" id="a-serious-pct" value="1.8" oninput="applyKPI()">
+        </div>
+        <div class="admin-field">
+          <div class="admin-field-label">Ашылу % </div>
+          <input class="admin-input" type="number" step="0.1" id="a-solved" value="67.4" oninput="applyKPI()">
+        </div>
+        <div class="admin-field">
+          <div class="admin-field-label">Сотталғандар</div>
+          <input class="admin-input" type="text" id="a-convicted" value="124370" oninput="applyKPI()">
+        </div>
+      </div>
+    </div>
+
+    <!-- MONTHLY ADMIN -->
+    <div class="admin-section" id="admin-monthly">
+      <div id="monthly-admin-fields" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;"></div>
+      <button class="apply-btn" style="margin-top:14px;" onclick="applyMonthly()">✓ ҚОЛДАНУ</button>
+    </div>
+
+    <!-- CATEGORIES ADMIN -->
+    <div class="admin-section" id="admin-categories">
+      <div id="cat-admin-fields" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;"></div>
+      <button class="apply-btn" style="margin-top:14px;" onclick="applyCategories()">✓ ҚОЛДАНУ</button>
+    </div>
+
+    <!-- REGIONS ADMIN -->
+    <div class="admin-section" id="admin-regions">
+      <div id="region-admin-fields" style="overflow-x:auto;"></div>
+      <button class="apply-btn" style="margin-top:14px;" onclick="applyRegions()">✓ ҚОЛДАНУ</button>
+    </div>
+
+    <!-- CRIME TYPES ADMIN -->
+    <div class="admin-section" id="admin-crimtypes">
+      <div id="crimtype-admin-fields" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;"></div>
+      <button class="apply-btn" style="margin-top:14px;" onclick="applyCrimTypes()">✓ ҚОЛДАНУ</button>
+    </div>
+
+    <!-- CRIMINALS ADMIN -->
+    <div class="admin-section" id="admin-criminals">
+      <div class="add-criminal-form">
+        <div style="font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">+ ЖАҢ ҚЫЛМЫСКЕР ҚОСУ</div>
+        <div class="form-row">
+          <div>
+            <div class="form-label" style="font-size:9px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:5px;">АТЫ-ЖӨНІ</div>
+            <input class="admin-input" type="text" id="nc-name" placeholder="Аты-жөні">
+          </div>
+          <div>
+            <div class="form-label" style="font-size:9px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:5px;">ҚЫЛМЫС</div>
+            <input class="admin-input" type="text" id="nc-crime" placeholder="Қылмыс түрі">
+          </div>
+        </div>
+        <div class="form-row-3">
+          <div>
+            <div class="form-label" style="font-size:9px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:5px;">ЖАСЫ</div>
+            <input class="admin-input" type="number" id="nc-age" placeholder="35">
+          </div>
+          <div>
+            <div class="form-label" style="font-size:9px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:5px;">ЖЫЛ</div>
+            <input class="admin-input" type="number" id="nc-year" placeholder="2026">
+          </div>
+          <div>
+            <div class="form-label" style="font-size:9px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:5px;">ҚАУІП (1-3)</div>
+            <select class="admin-input" id="nc-danger">
+              <option value="1">1 - ЕҢ ЖОҒАРЫ</option>
+              <option value="2">2 - ЖОҒАРЫ</option>
+              <option value="3">3 - ОРТА</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <div class="form-label" style="font-size:9px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:5px;">ЖАЗА (жыл)</div>
+            <input class="admin-input" type="text" id="nc-sentence" placeholder="15 жыл">
+          </div>
+          <div>
+            <div class="form-label" style="font-size:9px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:5px;">ӨҢІР</div>
+            <input class="admin-input" type="text" id="nc-region" placeholder="Алматы">
+          </div>
+        </div>
+        <div style="margin-bottom:10px;">
+          <div class="form-label" style="font-size:9px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:5px;">МӘЛІМЕТ</div>
+          <input class="admin-input" type="text" id="nc-details" placeholder="Кepimdeн қысқаша сипаттама">
+        </div>
+        <button class="apply-btn" onclick="addCriminal()">+ ҚОСУ</button>
+      </div>
+      <div class="criminal-admin-grid" id="criminal-admin-list"></div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <nav class="nav-tabs" role="tablist">
+    <button class="tab-btn active" onclick="switchTab('overview',this)" data-i18n="tab1">Шолу</button>
+    <button class="tab-btn" onclick="switchTab('regions',this)" data-i18n="tab2">Өңірлер</button>
+    <button class="tab-btn" onclick="switchTab('types',this)" data-i18n="tab3">Қылмыс түрлері</button>
+    <button class="tab-btn" onclick="switchTab('trends',this)" data-i18n="tab4">Трендтер</button>
+    <button class="tab-btn" onclick="switchTab('demo',this)" data-i18n="tab5">Демография</button>
+    <button class="tab-btn" onclick="switchTab('cyber',this)" data-i18n="tab6">Киберқылмыс</button>
+    <button class="tab-btn" onclick="switchTab('criminals',this)" data-i18n="tab7">Қылмыскерлер</button>
+  </nav>
+
+  <!-- OVERVIEW PANEL -->
+  <div id="panel-overview" class="panel active">
+    <div class="alert-strip">
+      <div style="font-size:16px;flex-shrink:0;">⚠</div>
+      <div class="alert-text"><strong data-i18n="alertTitle">2026 жылдың 1-жартысы бойынша:</strong> <span data-i18n="alertText">Алматы облысы мен Шымкент қаласында мүлікке байланысты қылмыстар 8,4%-ға өсті. Киберқылмыстар бойынша ұлттық деңгейде 34%-дық өсім тіркелді.</span></div>
+    </div>
+    <div class="section-gap">
+      <div class="section-head"><div class="section-label" data-i18n="mainCharts">Негізгі диаграммалар</div><div class="section-line"></div></div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title" data-i18n="monthlyTitle">Айлық қылмыс динамикасы</div>
+          <div class="card-subtitle" data-i18n="monthlySub">2025–2026 жылдармен салыстыру</div>
+          <div style="position:relative;height:220px;"><canvas id="monthlyChart"></canvas></div>
+          <div class="source-tag">Дерек: ҚР ІІМ · 2026</div>
+        </div>
+        <div class="card">
+          <div class="card-title" data-i18n="catTitle">Қылмыс категориялары</div>
+          <div class="card-subtitle" data-i18n="catSub">2026 жыл — үлестік бөлінісі</div>
+          <div style="position:relative;height:180px;"><canvas id="catChart"></canvas></div>
+          <div id="cat-legend" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-gap">
+      <div class="section-head"><div class="section-label" data-i18n="keyMetrics">Негізгі көрсеткіштер</div><div class="section-line"></div></div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title" data-i18n="ageTitle">Жас топтары</div>
+          <div class="card-subtitle" data-i18n="ageSub">Сотталғандардың жасы</div>
+          <div style="position:relative;height:160px;"><canvas id="ageChart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title" data-i18n="solvedTitle">Ашылу деңгейі</div>
+          <div class="card-subtitle" data-i18n="solvedSub">Өңірлер бойынша %, 2026</div>
+          <div class="rings-row" style="margin-top:14px;" id="solved-rings">
+            <div>
+              <svg width="72" height="72" viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="24" fill="none" stroke="#1E2230" stroke-width="6"/>
+                <circle cx="32" cy="32" r="24" fill="none" stroke="#E8281A" stroke-width="6" stroke-dasharray="150.8" stroke-dashoffset="49.2" stroke-linecap="round" transform="rotate(-90 32 32)" id="ring-all"/>
+                <text x="32" y="37" text-anchor="middle" fill="var(--text)" font-family="Bebas Neue" font-size="14" id="ring-all-text">67%</text>
+              </svg>
+              <div class="ring-label" data-i18n="ringAll">Барлығы</div>
+            </div>
+            <div>
+              <svg width="72" height="72" viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="24" fill="none" stroke="#1E2230" stroke-width="6"/>
+                <circle cx="32" cy="32" r="24" fill="none" stroke="#1DB8A0" stroke-width="6" stroke-dasharray="150.8" stroke-dashoffset="27" stroke-linecap="round" transform="rotate(-90 32 32)"/>
+                <text x="32" y="37" text-anchor="middle" fill="var(--text)" font-family="Bebas Neue" font-size="14">82%</text>
+              </svg>
+              <div class="ring-label">Астана</div>
+            </div>
+            <div>
+              <svg width="72" height="72" viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="24" fill="none" stroke="#1E2230" stroke-width="6"/>
+                <circle cx="32" cy="32" r="24" fill="none" stroke="#C8A951" stroke-width="6" stroke-dasharray="150.8" stroke-dashoffset="57" stroke-linecap="round" transform="rotate(-90 32 32)"/>
+                <text x="32" y="37" text-anchor="middle" fill="var(--text)" font-family="Bebas Neue" font-size="14">62%</text>
+              </svg>
+              <div class="ring-label">Алматы</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title" data-i18n="trendTitle">Жыл бойы серпін</div>
+          <div class="card-subtitle" data-i18n="trendSub">Алдыңғы 5 жылмен салыстыру</div>
+          <div style="position:relative;height:160px;"><canvas id="trendLineChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-gap">
+      <div class="section-head"><div class="section-label" data-i18n="heatmapTitle">Ай бойынша жылулық картасы</div><div class="section-line"></div></div>
+      <div class="card">
+        <div class="card-title" data-i18n="heatmapCard">Қылмыс жиілігі — Айлық / Санат жылулық картасы</div>
+        <div class="card-subtitle" data-i18n="heatmapSub">Қызылдау = жоғары жиілік · 2026 жыл</div>
+        <div id="heatmap-cont" style="overflow-x:auto;margin-top:8px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGIONS PANEL -->
+  <div id="panel-regions" class="panel">
+    <div class="grid-2-1">
+      <div class="card">
+        <div class="card-title" data-i18n="mapTitle">Қазақстан өңірлері — Қылмыс картасы</div>
+        <div class="card-subtitle" data-i18n="mapSub">100 000 адамға шаққандағы деңгей · 2026</div>
+        <div class="kz-map-container" id="mapContainer">
+          <div class="map-tooltip" id="mapTooltip"></div>
+          <svg id="kzMapSvg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="map-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#1DB8A0"></div><span>&lt;1700 — Төмен</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#E89020"></div><span>1700–2500 — Орта</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#E8281A"></div><span>&gt;2500 — Жоғары</span></div>
+        </div>
+        <div class="source-tag">100 000 адамға шаққандағы қылмыс саны · ҚР ІІМ 2026</div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-i18n="topRegions">ТОП өңірлер</div>
+        <div class="card-subtitle" data-i18n="topRegionsSub">100к адамға · деңгейі бойынша</div>
+        <div id="region-bars" style="margin-top:12px;"></div>
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <div class="card">
+        <div class="card-title" data-i18n="fullTable">Өңірлік толық кесте</div>
+        <div class="card-subtitle" data-i18n="fullTableSub">Барлық деректер · 2026 жыл</div>
+        <div style="overflow-x:auto;">
+          <table class="region-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th data-i18n="thRegion">Өңір</th>
+                <th data-i18n="thTotal">Барлығы</th>
+                <th data-i18n="thPer">100к-ға</th>
+                <th data-i18n="thSerious">Ауыр</th>
+                <th data-i18n="thSolved">Ашылды</th>
+                <th data-i18n="thLevel">Деңгей</th>
+              </tr>
+            </thead>
+            <tbody id="regionBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPES PANEL -->
+  <div id="panel-types" class="panel">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" data-i18n="crimeTypesTitle">Қылмыс түрлері — Егжей-тегжей</div>
+        <div class="card-subtitle" data-i18n="crimeTypesSub">Барлық тіркелген қылмыстар · 2026</div>
+        <div id="crime-type-bars" style="margin-top:14px;"></div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-i18n="changeTitle">2025–2026 Өзгеріс динамикасы</div>
+        <div class="card-subtitle" data-i18n="changeSub">Санат бойынша пайыздық өсім/кему</div>
+        <div style="position:relative;height:360px;"><canvas id="changeChart"></canvas></div>
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <div class="card">
+        <div class="card-title" data-i18n="fiveYrTitle">Қылмыс санаттарының 5 жылдық серпіні</div>
+        <div class="card-subtitle">2022–2026 · Негізгі категориялар</div>
+        <div style="position:relative;height:240px;"><canvas id="cat5yrChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRENDS PANEL -->
+  <div id="panel-trends" class="panel">
+    <div class="card section-gap">
+      <div class="card-title" data-i18n="trend3yr">Ай сайынғы серпін 2023–2026</div>
+      <div class="card-subtitle" data-i18n="trend3yrSub">Жалпы тіркелген қылмыстар — 3 жылдық салыстырма</div>
+      <div style="position:relative;height:280px;"><canvas id="trend3yrChart"></canvas></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" data-i18n="weekdayTitle">Апта күндері бойынша</div>
+        <div class="card-subtitle" data-i18n="weekdaySub">Қылмыс жиілігі — аптаның күні</div>
+        <div style="position:relative;height:200px;"><canvas id="weekdayChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-i18n="hourTitle">Тәулік уақыты</div>
+        <div class="card-subtitle" data-i18n="hourSub">Сағат бойынша қылмыс профилі</div>
+        <div style="position:relative;height:200px;"><canvas id="hourChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEMO PANEL -->
+  <div id="panel-demo" class="panel">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" data-i18n="genderTitle">Жас & Жыныс</div>
+        <div class="card-subtitle" data-i18n="genderSub">Сотталғандар · 2026</div>
+        <div style="position:relative;height:260px;"><canvas id="demoChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-i18n="juvenileTitle">Жасөспірім қылмысы</div>
+        <div class="card-subtitle" data-i18n="juvenileSub">18 жасқа дейін · 2022–2026</div>
+        <div style="position:relative;height:200px;"><canvas id="juvenileChart"></canvas></div>
+        <div class="mini-stat-row">
+          <div class="mini-stat"><div class="mini-stat-val">8 240</div><div class="mini-stat-lbl">Жасөспірім</div></div>
+          <div class="mini-stat"><div class="mini-stat-val">91%</div><div class="mini-stat-lbl">Ер жыныс</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" style="color:var(--red)">▲7.2%</div><div class="mini-stat-lbl">Өсім 2026</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <div class="card">
+        <div class="card-title" data-i18n="socialTitle">Білім деңгейі & Жұмыссыздық</div>
+        <div class="card-subtitle" data-i18n="socialSub">Сотталғандардың социалдық профилі · 2026</div>
+        <div style="position:relative;height:200px;"><canvas id="socialChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CYBER PANEL -->
+  <div id="panel-cyber" class="panel">
+    <div class="alert-strip">
+      <div style="font-size:16px;flex-shrink:0;">🔴</div>
+      <div class="alert-text"><strong data-i18n="cyberAlert">КИБЕРҚАУІП 2026:</strong> Қазақстанда киберқылмыстар 2022 жылдан бері <strong style="color:var(--red)">3.4 есе</strong> өсті. Жалпы шығын: <strong style="color:var(--gold)">₸47.8 млрд</strong>.</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" data-i18n="cyberTrend">Киберқылмыс өсімі</div>
+        <div class="card-subtitle">2019–2026 · Жылдық динамика</div>
+        <div style="position:relative;height:220px;"><canvas id="cyberTrendChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-i18n="cyberTypes">Киберқылмыс түрлері</div>
+        <div class="card-subtitle" data-i18n="cyberTypesSub">Үлесі % · 2026</div>
+        <div style="position:relative;height:180px;"><canvas id="cyberTypeChart"></canvas></div>
+        <div id="cyber-legend" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;"></div>
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <div class="card">
+        <div class="card-title" data-i18n="cyberVictim">Жертвалар профилі — Жас топтары</div>
+        <div class="card-subtitle">2026</div>
+        <div style="position:relative;height:200px;"><canvas id="cyberVictimChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRIMINALS PANEL -->
+  <div id="panel-criminals" class="panel">
+    <div class="section-head">
+      <div class="section-label" data-i18n="criminalsTitle">ЕҢ АУЫР ҚЫЛМЫС ЖАСАҒАНДАР</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="criminals-grid" id="criminals-grid"></div>
+  </div>
+
+</div><!-- /main -->
+
+<footer style="z-index:1;position:relative;">
+  <div class="footer">
+    <div class="footer-left">ҚР Ішкі істер министрлігі · Ұлттық статистика бюросы · Бас прокуратура<br>Деректер ақпараттық-аналитикалық мақсатта жиналған · 2026</div>
+    <div class="footer-right">v3.0.0 · 2026-Q2 · CC BY-NC 4.0</div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// I18N
+// ============================================================
+const i18n = {
+  kk: {
+    adminBtn:'ADMIN',headerTag:'ҚАЗАҚСТАН РЕСПУБЛИКАСЫ — ДЕРЕКТЕР ПОРТАЛЫ',
+    headerMain:'ҚЫЛМЫСТЫҚ СТАТИСТИКА 2026',headerSub:'Ішкі істер министрлігі · Бас прокуратура · Ұлттық статистика бюросы',
+    live:'ТІКЕЛЕЙ',kpi1:'Барлық қылмыс',kpi2:'Ауыр қылмыс',kpi3:'Ашылу пайызы',kpi4:'Сотталғандар',
+    prevYear:'өткен жылмен',mainCharts:'Негізгі диаграммалар',monthlyTitle:'Айлық қылмыс динамикасы',
+    monthlySub:'2025–2026 жылдармен салыстыру',catTitle:'Қылмыс категориялары',catSub:'2026 жыл — үлестік бөлінісі',
+    keyMetrics:'Негізгі көрсеткіштер',ageTitle:'Жас топтары',ageSub:'Сотталғандардың жасы',
+    solvedTitle:'Ашылу деңгейі',solvedSub:'Өңірлер бойынша %, 2026',
+    trendTitle:'Жыл бойы серпін',trendSub:'Алдыңғы 5 жылмен салыстыру',
+    heatmapTitle:'Ай бойынша жылулық картасы',heatmapCard:'Қылмыс жиілігі — Жылулық картасы',heatmapSub:'Қызылдау = жоғары жиілік · 2026',
+    mapTitle:'Қазақстан өңірлері — Қылмыс картасы',mapSub:'100 000 адамға шаққандағы деңгей · 2026',
+    topRegions:'ТОП өңірлер',topRegionsSub:'100к адамға · деңгейі бойынша',
+    fullTable:'Өңірлік толық кесте',fullTableSub:'Барлық деректер · 2026 жыл',
+    thRegion:'Өңір',thTotal:'Барлығы',thPer:'100к-ға',thSerious:'Ауыр',thSolved:'Ашылды',thLevel:'Деңгей',
+    crimeTypesTitle:'Қылмыс түрлері',crimeTypesSub:'Барлық тіркелген қылмыстар · 2026',
+    changeTitle:'2025–2026 Өзгеріс',changeSub:'Санат бойынша %',fiveYrTitle:'5 жылдық серпін',
+    trend3yr:'Ай сайынғы серпін 2023–2026',trend3yrSub:'3 жылдық салыстырма',
+    weekdayTitle:'Апта күндері бойынша',weekdaySub:'Қылмыс жиілігі',hourTitle:'Тәулік уақыты',hourSub:'Сағат бойынша профиль',
+    genderTitle:'Жас & Жыныс',genderSub:'Сотталғандар · 2026',juvenileTitle:'Жасөспірім қылмысы',juvenileSub:'18 жасқа дейін · 2022–2026',
+    socialTitle:'Білім деңгейі & Жұмыссыздық',socialSub:'Социалдық профиль · 2026',
+    cyberAlert:'КИБЕРҚАУІП 2026:',cyberTrend:'Киберқылмыс өсімі',cyberTypes:'Киберқылмыс түрлері',cyberTypesSub:'Үлесі % · 2026',cyberVictim:'Жертвалар профилі',
+    criminalsTitle:'ЕҢ АУЫР ҚЫЛМЫС ЖАСАҒАНДАР',
+    alertTitle:'2026 жылдың 1-жартысы бойынша:',alertText:'Алматы облысы мен Шымкент қаласында мүлікке байланысты қылмыстар 8,4%-ға өсті. Киберқылмыстар бойынша ұлттық деңгейде 34%-дық өсім тіркелді.',
+    ringAll:'Барлығы',tab1:'Шолу',tab2:'Өңірлер',tab3:'Қылмыс түрлері',tab4:'Трендтер',tab5:'Демография',tab6:'Киберқылмыс',tab7:'Қылмыскерлер',
+    loginTitle:'ADMIN ПАНЕЛІ',loginSub:'Жүйеге кіру · Авторизация',loginLabel:'ЛОГИН',passLabel:'ПАРОЛЬ'
+  },
+  ru: {
+    adminBtn:'ADMIN',headerTag:'РЕСПУБЛИКА КАЗАХСТАН — ПОРТАЛ ДАННЫХ',
+    headerMain:'КРИМИНАЛЬНАЯ СТАТИСТИКА 2026',headerSub:'МВД · Генеральная прокуратура · Бюро национальной статистики',
+    live:'ПРЯМОЙ ЭФИР',kpi1:'Всего преступлений',kpi2:'Тяжкие преступления',kpi3:'Раскрываемость',kpi4:'Осуждённые',
+    prevYear:'к прошлому году',mainCharts:'Основные диаграммы',monthlyTitle:'Ежемесячная динамика',
+    monthlySub:'Сравнение 2025–2026',catTitle:'Категории преступлений',catSub:'2026 год — доли',
+    keyMetrics:'Ключевые показатели',ageTitle:'Возрастные группы',ageSub:'Возраст осуждённых',
+    solvedTitle:'Уровень раскрытия',solvedSub:'По регионам %, 2026',
+    trendTitle:'Тенденции года',trendSub:'Сравнение с 5 предыдущими годами',
+    heatmapTitle:'Тепловая карта по месяцам',heatmapCard:'Частота преступлений — тепловая карта',heatmapSub:'Красный = высокая частота · 2026',
+    mapTitle:'Регионы Казахстана — Карта преступности',mapSub:'На 100 000 населения · 2026',
+    topRegions:'ТОП регионы',topRegionsSub:'На 100к · по уровню',
+    fullTable:'Полная таблица по регионам',fullTableSub:'Все данные · 2026',
+    thRegion:'Регион',thTotal:'Всего',thPer:'на 100к',thSerious:'Тяжкие',thSolved:'Раскрыто',thLevel:'Уровень',
+    crimeTypesTitle:'Виды преступлений',crimeTypesSub:'Все зарегистрированные · 2026',
+    changeTitle:'Динамика изменений 2025–2026',changeSub:'% рост/снижение по категориям',fiveYrTitle:'5-летняя тенденция',
+    trend3yr:'Ежемесячная тенденция 2023–2026',trend3yrSub:'3-летнее сравнение',
+    weekdayTitle:'По дням недели',weekdaySub:'Частота преступлений',hourTitle:'Время суток',hourSub:'Профиль по часам',
+    genderTitle:'Возраст & Пол',genderSub:'Осуждённые · 2026',juvenileTitle:'Преступность несовершеннолетних',juvenileSub:'До 18 лет · 2022–2026',
+    socialTitle:'Образование & Безработица',socialSub:'Социальный профиль · 2026',
+    cyberAlert:'КИБЕРУГРОЗА 2026:',cyberTrend:'Рост киберпреступности',cyberTypes:'Виды киберпреступлений',cyberTypesSub:'Доля % · 2026',cyberVictim:'Профиль жертв',
+    criminalsTitle:'НАИБОЛЕЕ ОПАСНЫЕ ПРЕСТУПНИКИ',
+    alertTitle:'По итогам 1-й половины 2026 года:',alertText:'В Алматинской области и г. Шымкент имущественные преступления выросли на 8,4%. Зафиксирован рост киберпреступлений на 34% на национальном уровне.',
+    ringAll:'Всего',tab1:'Обзор',tab2:'Регионы',tab3:'Виды преступлений',tab4:'Тенденции',tab5:'Демография',tab6:'Киберпреступность',tab7:'Преступники',
+    loginTitle:'ПАНЕЛЬ ADMIN',loginSub:'Вход в систему',loginLabel:'ЛОГИН',passLabel:'ПАРОЛЬ'
+  },
+  en: {
+    adminBtn:'ADMIN',headerTag:'REPUBLIC OF KAZAKHSTAN — DATA PORTAL',
+    headerMain:'CRIME STATISTICS 2026',headerSub:'Ministry of Internal Affairs · General Prosecutor · National Bureau of Statistics',
+    live:'LIVE',kpi1:'Total Crimes',kpi2:'Serious Crimes',kpi3:'Clearance Rate',kpi4:'Convicted',
+    prevYear:'vs. last year',mainCharts:'Main Charts',monthlyTitle:'Monthly Crime Dynamics',
+    monthlySub:'2025–2026 Comparison',catTitle:'Crime Categories',catSub:'2026 — Percentage breakdown',
+    keyMetrics:'Key Indicators',ageTitle:'Age Groups',ageSub:'Age of Convicted',
+    solvedTitle:'Clearance Rate',solvedSub:'By Region %, 2026',
+    trendTitle:'Yearly Trend',trendSub:'Comparison with past 5 years',
+    heatmapTitle:'Monthly Heatmap',heatmapCard:'Crime Frequency — Monthly Heatmap',heatmapSub:'Darker red = higher frequency · 2026',
+    mapTitle:'Kazakhstan Regions — Crime Map',mapSub:'Per 100,000 population · 2026',
+    topRegions:'TOP Regions',topRegionsSub:'Per 100k · by crime level',
+    fullTable:'Full Regional Table',fullTableSub:'All data · 2026',
+    thRegion:'Region',thTotal:'Total',thPer:'Per 100k',thSerious:'Serious',thSolved:'Solved',thLevel:'Level',
+    crimeTypesTitle:'Crime Types — Details',crimeTypesSub:'All registered crimes · 2026',
+    changeTitle:'2025–2026 Change Dynamics',changeSub:'% increase/decrease by category',fiveYrTitle:'5-Year Trend by Category',
+    trend3yr:'Monthly Trend 2023–2026',trend3yrSub:'3-year comparison',
+    weekdayTitle:'By Day of Week',weekdaySub:'Crime frequency by weekday',hourTitle:'Time of Day',hourSub:'Crime profile by hour',
+    genderTitle:'Age & Gender',genderSub:'Convicted persons · 2026',juvenileTitle:'Juvenile Crime',juvenileSub:'Under 18 · 2022–2026',
+    socialTitle:'Education & Unemployment',socialSub:'Social profile · 2026',
+    cyberAlert:'CYBER THREAT 2026:',cyberTrend:'Cybercrime Growth',cyberTypes:'Cybercrime Types',cyberTypesSub:'Share % · 2026',cyberVictim:'Victim Profile',
+    criminalsTitle:'MOST DANGEROUS CRIMINALS',
+    alertTitle:'First Half of 2026:',alertText:'Property crimes in Almaty Region and Shymkent city increased by 8.4%. National cybercrime grew by 34%.',
+    ringAll:'Total',tab1:'Overview',tab2:'Regions',tab3:'Crime Types',tab4:'Trends',tab5:'Demographics',tab6:'Cybercrime',tab7:'Criminals',
+    loginTitle:'ADMIN PANEL',loginSub:'System Login',loginLabel:'LOGIN',passLabel:'PASSWORD'
+  }
+};
+let currentLang = 'kk';
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(b=>{ if(b.textContent.toLowerCase().includes(lang==='kk'?'қаз':lang==='ru'?'рус':'eng')) b.classList.add('active'); });
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.dataset.i18n;
+    if(i18n[lang][key]) el.textContent = i18n[lang][key];
+  });
+}
+
+// ============================================================
+// THEME
+// ============================================================
+function toggleTheme() {
+  document.getElementById('appBody').classList.toggle('light-mode');
+}
+
+// ============================================================
+// DATA (mutable)
+// ============================================================
+const MONTHS_KK = ['Қаң','Ақп','Нау','Сәу','Мам','Мау','Шіл','Там','Қыр','Қаз','Қар','Жел'];
+let state = {
+  kpi: { total:'287640', totalPct:3.2, serious:'41820', seriousPct:1.8, solved:67.4, convicted:'124370' },
+  monthly2026: [21800,19400,23100,24500,25800,26400,27200,28600,25100,23400,22700,19680],
+  monthly2025: [20100,18200,21900,23100,24200,24900,25100,26400,23800,22100,21500,18900],
+  categories: [
+    {label:'Мүліктік қылмыстар',pct:34,color:'#E8281A'},
+    {label:'Зорлық-зомбылық',pct:18,color:'#E89020'},
+    {label:'Экономикалық',pct:22,color:'#2D7DD2'},
+    {label:'Есірткі',pct:11,color:'#8B5CF6'},
+    {label:'Киберқылмыс',pct:9,color:'#1DB8A0'},
+    {label:'Өзге',pct:6,color:'#9AA0B4'},
+  ],
+  regions: [
+    {name:'Алматы қ.',total:62400,per100k:3480,serious:9800,solved:'62%',level:'high'},
+    {name:'Астана қ.',total:42100,per100k:3210,serious:6200,solved:'82%',level:'high'},
+    {name:'Шымкент қ.',total:32600,per100k:2890,serious:4800,solved:'71%',level:'high'},
+    {name:'Қарағанды обл.',total:31200,per100k:2460,serious:5100,solved:'68%',level:'high'},
+    {name:'Маңғыстау обл.',total:19800,per100k:2100,serious:2900,solved:'74%',level:'med'},
+    {name:'Алматы обл.',total:22400,per100k:2150,serious:3400,solved:'65%',level:'med'},
+    {name:'Жамбыл обл.',total:16200,per100k:2020,serious:2400,solved:'66%',level:'med'},
+    {name:'Түркістан обл.',total:20800,per100k:1960,serious:3100,solved:'63%',level:'med'},
+    {name:'Ақтөбе обл.',total:14600,per100k:1790,serious:2200,solved:'72%',level:'low'},
+    {name:'Атырау обл.',total:11400,per100k:1840,serious:1800,solved:'75%',level:'med'},
+    {name:'Павлодар обл.',total:12100,per100k:1720,serious:1900,solved:'76%',level:'low'},
+    {name:'ШҚО',total:14200,per100k:1680,serious:2100,solved:'69%',level:'low'},
+    {name:'Қостанай обл.',total:10900,per100k:1580,serious:1700,solved:'78%',level:'low'},
+    {name:'СҚО',total:7800,per100k:1450,serious:1200,solved:'80%',level:'low'},
+    {name:'БҚО',total:9100,per100k:1620,serious:1400,solved:'77%',level:'low'},
+    {name:'Абай обл.',total:6200,per100k:1540,serious:950,solved:'79%',level:'low'},
+    {name:'Жетісу обл.',total:5900,per100k:1480,serious:880,solved:'81%',level:'low'},
+    {name:'Ұлытау обл.',total:3800,per100k:1340,serious:580,solved:'83%',level:'low'},
+  ],
+  crimeTypes: [
+    {name:'Ұрлық',count:68400,color:'#E8281A',change:4.2},
+    {name:'Алаяқтық',count:44200,color:'#E89020',change:12.8},
+    {name:'Тонау',count:18600,color:'#C8A951',change:-2.1},
+    {name:'Бұзақылық',count:16800,color:'#8B5CF6',change:1.4},
+    {name:'Есірткі айналымы',count:31600,color:'#7069B8',change:5.6},
+    {name:'Экон. қылмыстар',count:28900,color:'#2D7DD2',change:9.3},
+    {name:'Зорлық-зомбылық',count:22100,color:'#D45380',change:-3.8},
+    {name:'Жол апаты',count:14200,color:'#F0D080',change:-7.2},
+    {name:'Киберқылмыс',count:25800,color:'#1DB8A0',change:34.1},
+    {name:'Өзге',count:17140,color:'#5C6278',change:0.8},
+  ],
+  criminals: [
+    {name:'Дмитрий Волков',crime:'Қарулы тонау · Адам өлтіру',age:38,year:2024,sentence:'Өмір бойы бас бостандығынан айыру',region:'Алматы',danger:1,details:'3 адамды өлтіргені үшін сотталды. Ұйымдасқан топтың басшысы.',emoji:'👤'},
+    {name:'Серік Байқалов',crime:'Есірткі саудасы (ірі)',age:44,year:2023,sentence:'25 жыл бас бостандығынан айыру',region:'Шымкент',danger:1,details:'Халықаралық есірткі тасымалдау желісінің ұйымдастырушысы.',emoji:'👤'},
+    {name:'Алексей Романов',crime:'Банк алаяқтығы · Қаржы жүйесін бұзу',age:41,year:2025,sentence:'18 жыл бас бостандығынан айыру',region:'Астана',danger:1,details:'₸2.4 млрд жымқырды. Электрондық банк жүйелерін бұзды.',emoji:'👤'},
+    {name:'Нұрлан Жаксыбеков',crime:'Балаларға қатысты ауыр қылмыс',age:36,year:2024,sentence:'20 жыл бас бостандығынан айыру',region:'Қарағанды',danger:1,details:'Ауыр ауқымда сексуалдық қылмыс жасаған.',emoji:'👤'},
+    {name:'Руслан Оспанов',crime:'Сериялық тонау · Қарулы шабуыл',age:29,year:2025,sentence:'14 жыл бас бостандығынан айыру',region:'Алматы',danger:2,details:'6 айда 12 тонау жасаған. Қылмыстық топ мүшесі.',emoji:'👤'},
+    {name:'Бауыржан Смағұлов',crime:'Корупция · Мемлекеттік мүлікті жымқыру',age:52,year:2023,sentence:'12 жыл бас бостандығынан айыру',region:'Астана',danger:2,details:'Мемлекеттік қызмет орнын пайдаланып ₸800 млн жымқырды.',emoji:'👤'},
+  ]
+};
+
+// ============================================================
+// AUTH
+// ============================================================
+let isAdmin = false;
+const ADMIN_CREDS = {login:'admin',pass:'admin2026'};
+
+function openLogin() { document.getElementById('loginModal').classList.remove('hidden'); document.getElementById('adminLogin').focus(); }
+function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+function doLogin() {
+  const l = document.getElementById('adminLogin').value;
+  const p = document.getElementById('adminPass').value;
+  if(l===ADMIN_CREDS.login && p===ADMIN_CREDS.pass) {
+    isAdmin = true;
+    closeLogin();
+    document.getElementById('adminPanel').style.display = 'block';
+    document.getElementById('adminToggleBtn').textContent = '✕ ADMIN';
+    buildAdminFields();
+    document.getElementById('adminPanel').scrollIntoView({behavior:'smooth'});
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('adminLogin').style.borderColor = 'var(--red)';
+    document.getElementById('adminPass').style.borderColor = 'var(--red)';
+  }
+}
+document.getElementById('adminLogin').addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('adminPass').focus(); });
+document.getElementById('adminPass').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
+document.getElementById('loginModal').addEventListener('click',e=>{ if(e.target===document.getElementById('loginModal')) closeLogin(); });
+
+function toggleAdminPanel() {
+  if(!isAdmin) { openLogin(); return; }
+  const p = document.getElementById('adminPanel');
+  if(p.style.display==='none') {
+    p.style.display='block';
+    p.scrollIntoView({behavior:'smooth'});
+    document.getElementById('adminToggleBtn').textContent = '✕ ADMIN';
+  } else {
+    p.style.display='none';
+    document.getElementById('adminToggleBtn').innerHTML = '🔐 <span>ADMIN</span>';
+  }
+}
+function closeAdminPanel() {
+  document.getElementById('adminPanel').style.display='none';
+  document.getElementById('adminToggleBtn').innerHTML = '🔐 <span>ADMIN</span>';
+}
+
+// ============================================================
+// ADMIN TABS
+// ============================================================
+function switchAdminTab(id) {
+  document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('admin-'+id).classList.add('active');
+}
+
+// ============================================================
+// BUILD ADMIN FIELDS
+// ============================================================
+function buildAdminFields() {
+  // Monthly
+  const mf = document.getElementById('monthly-admin-fields');
+  mf.innerHTML = '';
+  MONTHS_KK.forEach((m,i)=>{
+    mf.innerHTML += `<div class="admin-field"><div class="admin-field-label">${m}</div><input class="admin-input" type="number" id="am-${i}" value="${state.monthly2026[i]}"></div>`;
+  });
+  // Categories
+  const cf = document.getElementById('cat-admin-fields');
+  cf.innerHTML = '';
+  state.categories.forEach((c,i)=>{
+    cf.innerHTML += `<div class="admin-field"><div class="admin-field-label" style="display:flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:2px;background:${c.color};display:inline-block"></span>${c.label}</div><input class="admin-input" type="number" min="0" max="100" id="acat-${i}" value="${c.pct}"></div>`;
+  });
+  // Regions
+  const rf = document.getElementById('region-admin-fields');
+  rf.innerHTML = `<table class="region-table"><thead><tr><th>Өңір</th><th>Барлығы</th><th>100к-ға</th><th>Ауыр</th><th>Ашылды %</th></tr></thead><tbody>` +
+    state.regions.map((r,i)=>`<tr>
+      <td style="font-size:11px;">${r.name}</td>
+      <td><input class="admin-input" type="number" id="ar-total-${i}" value="${r.total}" style="width:80px;font-size:11px;padding:4px 6px;"></td>
+      <td><input class="admin-input" type="number" id="ar-per-${i}" value="${r.per100k}" style="width:70px;font-size:11px;padding:4px 6px;"></td>
+      <td><input class="admin-input" type="number" id="ar-serious-${i}" value="${r.serious}" style="width:70px;font-size:11px;padding:4px 6px;"></td>
+      <td><input class="admin-input" type="text" id="ar-solved-${i}" value="${r.solved}" style="width:60px;font-size:11px;padding:4px 6px;"></td>
+    </tr>`).join('') + `</tbody></table>`;
+  // Crime types
+  const ctf = document.getElementById('crimtype-admin-fields');
+  ctf.innerHTML = '';
+  state.crimeTypes.forEach((c,i)=>{
+    ctf.innerHTML += `<div class="admin-field"><div class="admin-field-label" style="display:flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:2px;background:${c.color};display:inline-block"></span>${c.name}</div>
+      <div style="display:flex;gap:6px;"><input class="admin-input" type="number" id="act-count-${i}" value="${c.count}" placeholder="Саны">
+      <input class="admin-input" type="number" step="0.1" id="act-chg-${i}" value="${c.change}" placeholder="%" style="width:60px;"></div></div>`;
+  });
+  // Criminals list
+  renderCriminalAdminList();
+}
+
+// ============================================================
+// APPLY FUNCTIONS
+// ============================================================
+function applyKPI() {
+  const t = document.getElementById('a-total').value.replace(/\s/g,'');
+  const tp = parseFloat(document.getElementById('a-total-pct').value)||0;
+  const s = document.getElementById('a-serious').value.replace(/\s/g,'');
+  const sp = parseFloat(document.getElementById('a-serious-pct').value)||0;
+  const sol = parseFloat(document.getElementById('a-solved').value)||0;
+  const c = document.getElementById('a-convicted').value.replace(/\s/g,'');
+  document.getElementById('kv-total').textContent = parseInt(t).toLocaleString('ru');
+  document.getElementById('kd-total').innerHTML = `${tp>=0?'▲':'▼'} ${Math.abs(tp)}% <span>${i18n[currentLang].prevYear||'өткен жылмен'}</span>`;
+  document.getElementById('kv-serious').textContent = parseInt(s).toLocaleString('ru');
+  document.getElementById('kd-serious').innerHTML = `${sp>=0?'▲':'▼'} ${Math.abs(sp)}% <span>${i18n[currentLang].prevYear||'өткен жылмен'}</span>`;
+  document.getElementById('kv-solved').textContent = sol+'%';
+  document.getElementById('kv-convicted').textContent = parseInt(c).toLocaleString('ru');
+}
+
+function applyMonthly() {
+  state.monthly2026 = MONTHS_KK.map((_,i)=>parseInt(document.getElementById(`am-${i}`).value)||0);
+  charts.monthly.data.datasets[0].data = state.monthly2026;
+  charts.monthly.update();
+  charts.trend3yr.data.datasets[2].data = Array(24).fill(null).concat(state.monthly2026);
+  charts.trend3yr.update();
+}
+
+function applyCategories() {
+  state.categories.forEach((c,i)=>{ c.pct = parseInt(document.getElementById(`acat-${i}`).value)||0; });
+  charts.cat.data.datasets[0].data = state.categories.map(c=>c.pct);
+  charts.cat.update();
+  const catLeg = document.getElementById('cat-legend');
+  catLeg.innerHTML = '';
+  state.categories.forEach(c=>{ catLeg.innerHTML += `<span style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)"><span style="width:8px;height:8px;border-radius:2px;background:${c.color};flex-shrink:0"></span>${c.label} ${c.pct}%</span>`; });
+}
+
+function applyRegions() {
+  state.regions.forEach((r,i)=>{
+    r.total = parseInt(document.getElementById(`ar-total-${i}`).value)||r.total;
+    r.per100k = parseInt(document.getElementById(`ar-per-${i}`).value)||r.per100k;
+    r.serious = parseInt(document.getElementById(`ar-serious-${i}`).value)||r.serious;
+    r.solved = document.getElementById(`ar-solved-${i}`).value||r.solved;
+    const v = r.per100k;
+    r.level = v>2500?'high':v>1700?'med':'low';
+  });
+  renderRegionTable();
+  renderRegionBars();
+  renderMap();
+}
+
+function applyCrimTypes() {
+  state.crimeTypes.forEach((c,i)=>{
+    c.count = parseInt(document.getElementById(`act-count-${i}`).value)||c.count;
+    c.change = parseFloat(document.getElementById(`act-chg-${i}`).value)||c.change;
+  });
+  renderCrimeTypeBars();
+  charts.change.data.datasets[0].data = state.crimeTypes.map(c=>c.change);
+  charts.change.data.datasets[0].backgroundColor = state.crimeTypes.map(c=>c.change>0?'rgba(232,40,26,0.7)':'rgba(29,184,160,0.7)');
+  charts.change.update();
+}
+
+function addCriminal() {
+  const n = document.getElementById('nc-name').value.trim();
+  if(!n) return;
+  state.criminals.push({
+    name:n,
+    crime:document.getElementById('nc-crime').value||'—',
+    age:parseInt(document.getElementById('nc-age').value)||0,
+    year:parseInt(document.getElementById('nc-year').value)||2026,
+    sentence:document.getElementById('nc-sentence').value||'—',
+    region:document.getElementById('nc-region').value||'—',
+    danger:parseInt(document.getElementById('nc-danger').value)||2,
+    details:document.getElementById('nc-details').value||'—',
+    emoji:'👤'
+  });
+  ['nc-name','nc-crime','nc-age','nc-year','nc-sentence','nc-region','nc-details'].forEach(id=>document.getElementById(id).value='');
+  renderCriminalAdminList();
+  renderCriminals();
+}
+
+function deleteCriminal(i) {
+  state.criminals.splice(i,1);
+  renderCriminalAdminList();
+  renderCriminals();
+}
+
+function renderCriminalAdminList() {
+  const el = document.getElementById('criminal-admin-list');
+  el.innerHTML = state.criminals.map((c,i)=>`
+    <div class="criminal-admin-card">
+      <button class="delete-btn" onclick="deleteCriminal(${i})">✕ ӨШУ</button>
+      <div class="crim-admin-name">${c.name}</div>
+      <div class="crim-admin-info">${c.crime} · ${c.year} · ${c.region}</div>
+    </div>`).join('');
+}
+
+// ============================================================
+// RENDER FUNCTIONS
+// ============================================================
+function renderCriminals() {
+  const grid = document.getElementById('criminals-grid');
+  const dangerLabels = {1:'ЕҢ ЖОҒАРЫ ҚАУІП',2:'ЖОҒАРЫ ҚАУІП',3:'ОРТА ҚАУІП'};
+  const dangerClass = {1:'danger-1',2:'danger-2',3:'danger-3'};
+  grid.innerHTML = state.criminals.map(c=>`
+    <div class="criminal-card" style="position:relative;">
+      <div class="criminal-header">
+        <div class="criminal-photo">${c.emoji}</div>
+        <div>
+          <div class="criminal-name">${c.name}</div>
+          <div class="criminal-id">ҚЖ-${c.year}-${Math.floor(Math.random()*9000+1000)}</div>
+          <div class="criminal-crime">${c.crime}</div>
+          <div style="margin-top:6px;"><span class="danger-badge ${dangerClass[c.danger]}">⚠ ${dangerLabels[c.danger]}</span></div>
+        </div>
+      </div>
+      <div class="criminal-body">
+        <div class="criminal-row"><span class="cr-key">ЖАС</span><span class="cr-val">${c.age} жас</span></div>
+        <div class="criminal-row"><span class="cr-key">ЖЫЛ</span><span class="cr-val">${c.year}</span></div>
+        <div class="criminal-row"><span class="cr-key">ЖАЗА</span><span class="cr-val">${c.sentence}</span></div>
+        <div class="criminal-row"><span class="cr-key">ӨҢІР</span><span class="cr-val">${c.region}</span></div>
+        <div style="margin-top:10px;font-size:11px;color:var(--text2);line-height:1.5;padding:8px;background:var(--bg3);border-radius:6px;border-left:3px solid var(--red);">${c.details}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderRegionTable() {
+  const tbody = document.getElementById('regionBody');
+  const sorted = [...state.regions].sort((a,b)=>b.per100k-a.per100k);
+  tbody.innerHTML = sorted.map((r,i)=>{
+    const sc = r.level==='high'?'sev-high':r.level==='med'?'sev-med':'sev-low';
+    const st = r.level==='high'?'ЖОҒАРЫ':r.level==='med'?'ОРТА':'ТӨМЕН';
+    const col = r.level==='high'?'#E8281A':r.level==='med'?'#E89020':'#1DB8A0';
+    return `<tr><td><span class="rank-num">${i+1}</span></td><td>${r.name}</td><td>${r.total.toLocaleString('ru')}</td><td style="font-family:'IBM Plex Mono',monospace;color:${col}">${r.per100k}</td><td>${r.serious.toLocaleString('ru')}</td><td style="font-family:'IBM Plex Mono',monospace;">${r.solved}</td><td><span class="severity-badge ${sc}">${st}</span></td></tr>`;
+  }).join('');
+}
+
+function renderRegionBars() {
+  const el = document.getElementById('region-bars');
+  const top = [...state.regions].sort((a,b)=>b.per100k-a.per100k).slice(0,8);
+  const mx = top[0].per100k;
+  el.innerHTML = top.map((r,i)=>{
+    const pct = (r.per100k/mx*100).toFixed(0);
+    const col = r.level==='high'?'#E8281A':r.level==='med'?'#E89020':'#1DB8A0';
+    return `<div class="crime-bar-item"><div class="crime-bar-label" style="font-size:10px;">${i+1}. ${r.name}</div><div class="crime-bar-track"><div class="crime-bar-fill" style="width:${pct}%;background:${col}"></div></div><div class="crime-bar-val">${r.per100k.toLocaleString('ru')}</div></div>`;
+  }).join('');
+}
+
+function renderCrimeTypeBars() {
+  const el = document.getElementById('crime-type-bars');
+  const mx = Math.max(...state.crimeTypes.map(c=>c.count));
+  el.innerHTML = state.crimeTypes.map(c=>`
+    <div class="crime-bar-item">
+      <div class="crime-bar-label">${c.name}</div>
+      <div class="crime-bar-track"><div class="crime-bar-fill" style="width:${(c.count/mx*100).toFixed(0)}%;background:${c.color}"></div></div>
+      <div class="crime-bar-val">${c.count.toLocaleString('ru')}</div>
+    </div>`).join('');
+}
+
+// ============================================================
+// MAP
+// ============================================================
+const mapRegionsData = [
+  {name:'Алматы қ.',x:680,y:340,rx:58,ry:44},
+  {name:'Астана қ.',x:440,y:160,rx:52,ry:40},
+  {name:'Шымкент қ.',x:290,y:390,rx:52,ry:36},
+  {name:'Қарағанды обл.',x:450,y:260,rx:78,ry:62},
+  {name:'Маңғыстау обл.',x:95,y:330,rx:62,ry:42},
+  {name:'Алматы обл.',x:580,y:340,rx:72,ry:52},
+  {name:'Жамбыл обл.',x:355,y:340,rx:66,ry:46},
+  {name:'Түркістан обл.',x:205,y:380,rx:62,ry:44},
+  {name:'Ақтөбе обл.',x:205,y:240,rx:72,ry:56},
+  {name:'Атырау обл.',x:98,y:208,rx:72,ry:55},
+  {name:'Павлодар обл.',x:516,y:108,rx:56,ry:38},
+  {name:'ШҚО',x:615,y:150,rx:78,ry:56},
+  {name:'Қостанай обл.',x:305,y:106,rx:72,ry:50},
+  {name:'СҚО',x:400,y:84,rx:62,ry:40},
+  {name:'БҚО',x:185,y:136,rx:68,ry:46},
+  {name:'Абай обл.',x:710,y:228,rx:54,ry:40},
+  {name:'Жетісу обл.',x:760,y:330,rx:50,ry:38},
+  {name:'Ұлытау обл.',x:340,y:230,rx:58,ry:44},
+];
+
+function renderMap() {
+  const svg = document.getElementById('kzMapSvg');
+  svg.innerHTML = '';
+  // background
+  const bg = document.createElementNS('http://www.w3.org/2000/svg','rect');
+  bg.setAttribute('width','900');bg.setAttribute('height','520');bg.setAttribute('fill','var(--bg3)');bg.setAttribute('rx','8');
+  svg.appendChild(bg);
+  // grid lines
+  for(let i=0;i<9;i++){
+    const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',i*100);l.setAttribute('y1',0);l.setAttribute('x2',i*100);l.setAttribute('y2',520);
+    l.setAttribute('stroke','rgba(255,255,255,0.03)');l.setAttribute('stroke-width','1');
+    svg.appendChild(l);
+  }
+  for(let i=0;i<6;i++){
+    const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',0);l.setAttribute('y1',i*100);l.setAttribute('x2',900);l.setAttribute('y2',i*100);
+    l.setAttribute('stroke','rgba(255,255,255,0.03)');l.setAttribute('stroke-width','1');
+    svg.appendChild(l);
+  }
+
+  mapRegionsData.forEach(md=>{
+    const r = state.regions.find(r=>r.name===md.name)||{per100k:1500,level:'low',total:0,serious:0,solved:'70%'};
+    const col = r.level==='high'?'#E8281A':r.level==='med'?'#E89020':'#1DB8A0';
+    const fillOpacity = r.level==='high'?0.25:r.level==='med'?0.18:0.12;
+    const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','map-region');
+    g.setAttribute('data-name',md.name);
+    g.addEventListener('mousemove',showMapTooltip);
+    g.addEventListener('mouseleave',hideMapTooltip);
+    // shadow
+    const sh = document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+    sh.setAttribute('cx',md.x+2);sh.setAttribute('cy',md.y+3);sh.setAttribute('rx',md.rx);sh.setAttribute('ry',md.ry);
+    sh.setAttribute('fill','rgba(0,0,0,0.3)');
+    g.appendChild(sh);
+    // fill
+    const el = document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+    el.setAttribute('cx',md.x);el.setAttribute('cy',md.y);el.setAttribute('rx',md.rx);el.setAttribute('ry',md.ry);
+    el.setAttribute('fill',col);el.setAttribute('fill-opacity',fillOpacity);
+    el.setAttribute('stroke',col);el.setAttribute('stroke-width',r.level==='high'?2:1);el.setAttribute('stroke-opacity','0.7');
+    g.appendChild(el);
+    // name
+    const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',md.x);t.setAttribute('y',md.y-2);t.setAttribute('text-anchor','middle');
+    t.setAttribute('fill','#E8EAF0');t.setAttribute('font-family','IBM Plex Sans');t.setAttribute('font-size','9');
+    t.setAttribute('font-weight','500');t.textContent = md.name;
+    g.appendChild(t);
+    // value
+    const v = document.createElementNS('http://www.w3.org/2000/svg','text');
+    v.setAttribute('x',md.x);v.setAttribute('y',md.y+12);v.setAttribute('text-anchor','middle');
+    v.setAttribute('fill',col);v.setAttribute('font-family','Bebas Neue');v.setAttribute('font-size','14');
+    v.textContent = r.per100k;
+    g.appendChild(v);
+    svg.appendChild(g);
+  });
+
+  // legend
+  const lg = [['#1DB8A0','<1700 — Төмен',10],['#E89020','1700–2500 — Орта',190],['#E8281A','>2500 — Жоғары',400]];
+  lg.forEach(([c,t,x])=>{
+    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    rect.setAttribute('x',x);rect.setAttribute('y',488);rect.setAttribute('width',12);rect.setAttribute('height',8);rect.setAttribute('rx',2);rect.setAttribute('fill',c);
+    svg.appendChild(rect);
+    const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
+    txt.setAttribute('x',x+16);txt.setAttribute('y',496);txt.setAttribute('fill','#9AA0B4');txt.setAttribute('font-family','IBM Plex Sans');txt.setAttribute('font-size','9');
+    txt.textContent = t;
+    svg.appendChild(txt);
+  });
+}
+
+function showMapTooltip(e) {
+  const name = e.currentTarget.dataset.name;
+  const r = state.regions.find(r=>r.name===name)||{};
+  const tt = document.getElementById('mapTooltip');
+  const col = r.level==='high'?'#E8281A':r.level==='med'?'#E89020':'#1DB8A0';
+  tt.innerHTML = `<div class="map-tooltip-title">${name}</div>
+    <div class="map-tooltip-row"><span>100к-ға:</span><span class="map-tooltip-val" style="color:${col}">${(r.per100k||0).toLocaleString('ru')}</span></div>
+    <div class="map-tooltip-row"><span>Барлығы:</span><span class="map-tooltip-val">${(r.total||0).toLocaleString('ru')}</span></div>
+    <div class="map-tooltip-row"><span>Ауыр:</span><span class="map-tooltip-val">${(r.serious||0).toLocaleString('ru')}</span></div>
+    <div class="map-tooltip-row"><span>Ашылды:</span><span class="map-tooltip-val">${r.solved||'—'}</span></div>`;
+  tt.style.display='block';
+  const rect = document.getElementById('mapContainer').getBoundingClientRect();
+  let lf = e.clientX - rect.left + 12;
+  let tp = e.clientY - rect.top - 10;
+  if(lf+180>rect.width) lf -= 200;
+  if(tp<0) tp=0;
+  tt.style.left=lf+'px'; tt.style.top=tp+'px';
+}
+function hideMapTooltip() { document.getElementById('mapTooltip').style.display='none'; }
+
+// ============================================================
+// HEATMAP
+// ============================================================
+function renderHeatmap() {
+  const cats = ['Ұрлық','Алаяқтық','Зорлық','Есірткі','Кибер','Экон.'];
+  const hmData = [
+    [1.2,0.9,1.1,1.3,1.4,1.5,1.6,1.7,1.3,1.2,1.1,0.8],
+    [0.8,0.7,0.9,1.1,1.2,1.3,1.4,1.5,1.1,1.0,0.9,0.7],
+    [0.6,0.5,0.6,0.7,0.8,1.0,1.1,1.0,0.8,0.7,0.6,0.5],
+    [0.9,0.8,1.0,1.0,1.1,1.2,1.3,1.2,1.0,0.9,0.8,0.7],
+    [0.7,0.6,0.8,1.0,1.2,1.3,1.4,1.5,1.1,1.0,0.9,0.8],
+    [0.5,0.4,0.6,0.8,0.9,1.0,1.1,1.1,0.8,0.7,0.6,0.5],
+  ];
+  const cont = document.getElementById('heatmap-cont');
+  let h = `<div class="heatmap-grid"><div class="hm-cell hm-label"></div>`;
+  MONTHS_KK.forEach(m=>{ h+=`<div class="hm-cell hm-month" style="justify-content:center;">${m}</div>`; });
+  cats.forEach((cat,ci)=>{
+    h+=`<div class="hm-cell hm-label" style="white-space:nowrap;">${cat}</div>`;
+    hmData[ci].forEach(v=>{
+      const a=v/1.7;
+      const r=Math.round(10+a*222),g=Math.round(12+a*26),b2=Math.round(18+a*8);
+      const tc=a>0.6?'#fff':'#9AA0B4';
+      h+=`<div class="hm-cell" style="background:rgba(${r},${g},${b2},0.85);color:${tc}">${v.toFixed(1)}</div>`;
+    });
+  });
+  h+=`</div>`;
+  cont.innerHTML=h;
+}
+
+// ============================================================
+// CHARTS
+// ============================================================
+const GRID='rgba(255,255,255,0.06)';
+const TICK={color:'#9AA0B4',font:{family:'IBM Plex Sans',size:10}};
+function baseOpts(extra={}) {
+  return {responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#1E2230',borderColor:'rgba(255,255,255,0.12)',borderWidth:1,titleColor:'#E8EAF0',bodyColor:'#9AA0B4',padding:10,cornerRadius:6}},
+    scales:{x:{grid:{color:GRID},ticks:TICK},y:{grid:{color:GRID},ticks:TICK}},...extra};
+}
+
+const charts = {};
+
+function initCharts() {
+  // Monthly
+  charts.monthly = new Chart(document.getElementById('monthlyChart'),{
+    type:'line',
+    data:{labels:MONTHS_KK,datasets:[
+      {label:'2026',data:state.monthly2026,borderColor:'#E8281A',backgroundColor:'rgba(232,40,26,0.08)',borderWidth:2,fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#E8281A'},
+      {label:'2025',data:state.monthly2025,borderColor:'#5C6278',backgroundColor:'transparent',borderWidth:1.5,borderDash:[4,3],tension:0.4,pointRadius:0}
+    ]},
+    options:{...baseOpts(),plugins:{...baseOpts().plugins,legend:{display:true,labels:{color:'#9AA0B4',boxWidth:18,font:{size:11}}}}}
+  });
+
+  // Cat doughnut
+  charts.cat = new Chart(document.getElementById('catChart'),{
+    type:'doughnut',
+    data:{labels:state.categories.map(c=>c.label),datasets:[{data:state.categories.map(c=>c.pct),backgroundColor:state.categories.map(c=>c.color),borderWidth:0,hoverOffset:8}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false},tooltip:{backgroundColor:'#1E2230',borderColor:'rgba(255,255,255,0.12)',borderWidth:1,titleColor:'#E8EAF0',bodyColor:'#9AA0B4',callbacks:{label:ctx=>`${ctx.label}: ${ctx.parsed}%`}}}}
+  });
+  const catLeg = document.getElementById('cat-legend');
+  state.categories.forEach(c=>{ catLeg.innerHTML+=`<span style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)"><span style="width:8px;height:8px;border-radius:2px;background:${c.color};flex-shrink:0"></span>${c.label} ${c.pct}%</span>`; });
+
+  // Age
+  charts.age = new Chart(document.getElementById('ageChart'),{
+    type:'bar',
+    data:{labels:['14–17','18–24','25–34','35–44','45–54','55+'],datasets:[{data:[6.8,24.2,31.4,22.1,11.3,4.2],backgroundColor:['#8B5CF6','#E8281A','#E89020','#2D7DD2','#1DB8A0','#5C6278'],borderRadius:4,borderWidth:0}]},
+    options:baseOpts({scales:{...baseOpts().scales,y:{...baseOpts().scales.y,ticks:{...TICK,callback:v=>v+'%'}}}})
+  });
+
+  // Trend line (5yr)
+  charts.trend = new Chart(document.getElementById('trendLineChart'),{
+    type:'line',
+    data:{labels:['2022','2023','2024','2025','2026'],datasets:[{data:[258000,266400,274100,278200,287640],borderColor:'#C8A951',backgroundColor:'rgba(200,169,81,0.1)',borderWidth:2,fill:true,tension:0.3,pointRadius:4,pointBackgroundColor:'#C8A951'}]},
+    options:baseOpts()
+  });
+
+  // Change chart
+  charts.change = new Chart(document.getElementById('changeChart'),{
+    type:'bar',
+    data:{labels:state.crimeTypes.map(c=>c.name),datasets:[{data:state.crimeTypes.map(c=>c.change),backgroundColor:state.crimeTypes.map(c=>c.change>0?'rgba(232,40,26,0.7)':'rgba(29,184,160,0.7)'),borderRadius:3,borderWidth:0}]},
+    options:{...baseOpts(),indexAxis:'y',scales:{x:{grid:{color:GRID},ticks:{...TICK,callback:v=>v+'%'}},y:{grid:{color:'transparent'},ticks:TICK}}}
+  });
+
+  // 5yr category
+  charts.cat5yr = new Chart(document.getElementById('cat5yrChart'),{
+    type:'line',
+    data:{labels:['2022','2023','2024','2025','2026'],datasets:[
+      {label:'Мүліктік',data:[72000,74200,75800,77100,79400],borderColor:'#E8281A',borderWidth:2,tension:0.3,pointRadius:3,fill:false,pointBackgroundColor:'#E8281A'},
+      {label:'Экономикалық',data:[22000,24100,26400,27800,28900],borderColor:'#2D7DD2',borderWidth:2,tension:0.3,pointRadius:3,fill:false,pointBackgroundColor:'#2D7DD2'},
+      {label:'Есірткі',data:[26000,27800,29200,30400,31600],borderColor:'#8B5CF6',borderWidth:2,tension:0.3,pointRadius:3,fill:false,pointBackgroundColor:'#8B5CF6'},
+      {label:'Киберқылмыс',data:[7600,9800,13200,19200,25800],borderColor:'#1DB8A0',borderWidth:2,tension:0.3,pointRadius:3,fill:false,pointBackgroundColor:'#1DB8A0'},
+    ]},
+    options:{...baseOpts(),plugins:{...baseOpts().plugins,legend:{display:true,labels:{color:'#9AA0B4',boxWidth:16,font:{size:10}}}}}
+  });
+
+  // 3yr trend
+  const t3l = [];
+  ['2024','2025','2026'].forEach(yr=>MONTHS_KK.forEach(m=>t3l.push(`${m} ${yr}`)));
+  charts.trend3yr = new Chart(document.getElementById('trend3yrChart'),{
+    type:'line',
+    data:{labels:t3l,datasets:[
+      {label:'2024',data:[17100,15900,18200,19100,20400,21100,21800,22400,20100,18900,18200,15900].concat(Array(24).fill(null)),borderColor:'#444870',borderWidth:1.5,tension:0.3,pointRadius:0,fill:false},
+      {label:'2025',data:Array(12).fill(null).concat(state.monthly2025).concat(Array(12).fill(null)),borderColor:'#9AA0B4',borderWidth:1.5,tension:0.3,pointRadius:0,fill:false},
+      {label:'2026',data:Array(24).fill(null).concat(state.monthly2026),borderColor:'#E8281A',borderWidth:2,tension:0.3,pointRadius:0,fill:false},
+    ]},
+    options:{...baseOpts(),plugins:{...baseOpts().plugins,legend:{display:true,labels:{color:'#9AA0B4',boxWidth:16,font:{size:11}}}}}
+  });
+
+  // Weekday
+  charts.weekday = new Chart(document.getElementById('weekdayChart'),{
+    type:'bar',
+    data:{labels:['Дс','Сс','Ср','Бс','Жм','Сб','Жк'],datasets:[{data:[820,890,910,1020,1340,1680,1420],backgroundColor:['#2D7DD2','#2D7DD2','#2D7DD2','#2D7DD2','#E89020','#E8281A','#E89020'],borderRadius:4,borderWidth:0}]},
+    options:baseOpts()
+  });
+
+  // Hour
+  const hl = Array.from({length:24},(_,i)=>`${i}:00`);
+  charts.hour = new Chart(document.getElementById('hourChart'),{
+    type:'line',
+    data:{labels:hl,datasets:[{data:[180,120,90,70,80,110,280,420,560,480,520,680,740,660,590,620,810,1040,1380,1520,1460,1200,920,620],borderColor:'#C8A951',backgroundColor:'rgba(200,169,81,0.1)',fill:true,tension:0.4,pointRadius:0,borderWidth:2}]},
+    options:baseOpts()
+  });
+
+  // Demo
+  charts.demo = new Chart(document.getElementById('demoChart'),{
+    type:'bar',
+    data:{labels:['14–17','18–24','25–34','35–44','45–54','55+'],datasets:[
+      {label:'Ер',data:[7500,29200,38600,26800,13400,5100],backgroundColor:'rgba(45,125,210,0.8)',borderRadius:3,borderWidth:0},
+      {label:'Әйел',data:[720,3800,5200,4100,2200,980],backgroundColor:'rgba(212,83,128,0.8)',borderRadius:3,borderWidth:0},
+    ]},
+    options:{...baseOpts(),plugins:{...baseOpts().plugins,legend:{display:true,labels:{color:'#9AA0B4',boxWidth:16,font:{size:11}}}}}
+  });
+
+  // Juvenile
+  charts.juvenile = new Chart(document.getElementById('juvenileChart'),{
+    type:'line',
+    data:{labels:['2022','2023','2024','2025','2026'],datasets:[{data:[6100,6800,7200,7700,8240],borderColor:'#8B5CF6',backgroundColor:'rgba(139,92,246,0.1)',fill:true,tension:0.3,pointRadius:4,borderWidth:2,pointBackgroundColor:'#8B5CF6'}]},
+    options:baseOpts()
+  });
+
+  // Social
+  charts.social = new Chart(document.getElementById('socialChart'),{
+    type:'bar',
+    data:{labels:['Жұмыссыз','Төменгі білім','Орта білім','Жоғары білім','Рецидив','Мас күйде'],datasets:[{data:[54,28,44,18,38,31],backgroundColor:['#E8281A','#E89020','#C8A951','#1DB8A0','#8B5CF6','#2D7DD2'],borderRadius:4,borderWidth:0}]},
+    options:{...baseOpts(),scales:{...baseOpts().scales,y:{...baseOpts().scales.y,ticks:{...TICK,callback:v=>v+'%'}}}}
+  });
+
+  // Cyber trend
+  const cyberYearData={labels:['2019','2020','2021','2022','2023','2024','2025','2026'],vals:[4200,6100,8400,11200,15600,19800,24100,25800]};
+  charts.cyberTrend = new Chart(document.getElementById('cyberTrendChart'),{
+    type:'bar',
+    data:{labels:cyberYearData.labels,datasets:[{data:cyberYearData.vals,backgroundColor:cyberYearData.vals.map((_,i)=>i===7?'#1DB8A0':'rgba(29,184,160,0.4)'),borderRadius:4,borderWidth:0}]},
+    options:baseOpts()
+  });
+
+  // Cyber types
+  const cyberTypes=[{label:'Фишинг',pct:41,color:'#E8281A'},{label:'Онлайн алаяқтық',pct:33,color:'#E89020'},{label:'Деректер ұрлау',pct:18,color:'#2D7DD2'},{label:'Бопсалау',pct:5,color:'#8B5CF6'},{label:'Өзге',pct:3,color:'#9AA0B4'}];
+  charts.cyberType = new Chart(document.getElementById('cyberTypeChart'),{
+    type:'doughnut',
+    data:{labels:cyberTypes.map(c=>c.label),datasets:[{data:cyberTypes.map(c=>c.pct),backgroundColor:cyberTypes.map(c=>c.color),borderWidth:0,hoverOffset:8}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false},tooltip:{backgroundColor:'#1E2230',borderColor:'rgba(255,255,255,0.12)',borderWidth:1,callbacks:{label:ctx=>`${ctx.label}: ${ctx.parsed}%`}}}}
+  });
+  const cyberLeg=document.getElementById('cyber-legend');
+  cyberTypes.forEach(c=>{ cyberLeg.innerHTML+=`<span style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)"><span style="width:8px;height:8px;border-radius:2px;background:${c.color};flex-shrink:0"></span>${c.label} ${c.pct}%</span>`; });
+
+  // Cyber victim
+  charts.cyberVictim = new Chart(document.getElementById('cyberVictimChart'),{
+    type:'bar',
+    data:{labels:['18–24','25–34','35–44','45–54','55–64','65+'],datasets:[
+      {label:'Жертвалар',data:[3800,5400,4200,3100,2600,1800],backgroundColor:'rgba(29,184,160,0.7)',borderRadius:3,borderWidth:0},
+      {label:'Орт. шығын (млн₸)',data:[0.8,2.4,3.8,5.2,4.1,3.6],backgroundColor:'rgba(200,169,81,0.7)',borderRadius:3,borderWidth:0,yAxisID:'y2'}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:'#9AA0B4',boxWidth:16,font:{size:11}}},tooltip:{backgroundColor:'#1E2230',borderColor:'rgba(255,255,255,0.12)',borderWidth:1,titleColor:'#E8EAF0',bodyColor:'#9AA0B4'}},
+      scales:{x:{grid:{color:GRID},ticks:TICK},y:{grid:{color:GRID},ticks:TICK},y2:{position:'right',grid:{display:false},ticks:{...TICK,color:'#C8A951',callback:v=>v+'М₸'}}}}
+  });
+}
+
+// ============================================================
+// TABS
+// ============================================================
+function switchTab(id, btn) {
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  else event.target.classList.add('active');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderRegionTable();
+renderRegionBars();
+renderCrimeTypeBars();
+renderCriminals();
+renderMap();
+renderHeatmap();
+initCharts();
+
+// Animate bars
+setTimeout(()=>{
+  document.querySelectorAll('.crime-bar-fill').forEach(el=>{
+    const w=el.style.width;el.style.width='0';
+    setTimeout(()=>{ el.style.width=w; },100);
+  });
+},300);
+</script>
+</body>
+</html>
